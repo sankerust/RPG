@@ -5,13 +5,18 @@ using RPG.Core;
 namespace RPG.Combat
 {
 
-  public class Fighter : MonoBehaviour 
+  public class Fighter : MonoBehaviour, IAction
   {
     [SerializeField] float weaponRange = 2f;
+    [SerializeField] float timeBetweenAttacks = 1f;
+    [SerializeField] float weaponDamage = 5;
+
     Transform target;
+    float timeSinceLastAttack = 0;
 
     private void Update()
     {
+      timeSinceLastAttack += Time.deltaTime;
       if (target == null) return;
       if (!GetIsInRange())
       {
@@ -19,8 +24,24 @@ namespace RPG.Combat
       }
       else
       {
-        GetComponent<Mover>().Stop();
+        GetComponent<Mover>().Cancel();
+        AttackBehaviour();
       }
+    }
+
+    private void AttackBehaviour()
+    {
+      // This will trigger the Hit() event.
+      if (timeSinceLastAttack > timeBetweenAttacks) {
+        GetComponent<Animator>().SetTrigger("attack");
+        timeSinceLastAttack = 0;
+      }
+    }
+
+    // Animation event
+    void Hit()
+    {
+      target.GetComponent<Health>().TakeDamage(weaponDamage);
     }
 
     private bool GetIsInRange()
@@ -36,5 +57,7 @@ namespace RPG.Combat
   public void Cancel() {
     target = null;
   }
+
+
 }
 }
