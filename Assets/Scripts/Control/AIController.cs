@@ -14,6 +14,8 @@ namespace RPG.Control
     [SerializeField] float suspicionTime = 3f;
     [SerializeField] float waypointTolerance = 1f;
     [SerializeField] float dwellTime = 2f;
+    [SerializeField] float patrolSpeed = 2f;
+    [SerializeField] float chaseSpeed = 4f;
     [SerializeField] PatrolPath patrolPath;
 
     GameObject player;
@@ -71,6 +73,7 @@ namespace RPG.Control
     private void PatrolBehaviour()
     {
       Vector3 nextPosition = guardPosition;
+      mover.SetSpeed(patrolSpeed);
 
       if (patrolPath != null) {
         if (AtWaypoint()) {
@@ -109,6 +112,7 @@ namespace RPG.Control
     private void AttackBehaviour()
     {
       timeSinceLastSawPlayer = 0;
+      mover.SetSpeed(chaseSpeed);
       fighter.Attack(player);
     }
 

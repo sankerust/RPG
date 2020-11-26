@@ -9,12 +9,9 @@ namespace RPG.Movement
 {
   public class Mover : MonoBehaviour, IAction
   {
-    
-    //[SerializeField] Transform target;
     Animator animator;
     NavMeshAgent navMeshAgent;
     Health health;
-
 
     void Start()
     {
@@ -52,6 +49,10 @@ namespace RPG.Movement
       Vector3 localVelocity = transform.InverseTransformDirection(velocity);
       float speed = localVelocity.z;
       animator.SetFloat("forwardSpeed", speed);
+    }
+
+    public void SetSpeed(float speed) {
+      navMeshAgent.speed = speed;
     }
   }
 }
