@@ -10,7 +10,7 @@ namespace RPG.Core
 
     void LateUpdate()
     {
-      transform.position = Vector3.Lerp(transform.position, target.position, 0.05f);
+      //transform.position = Vector3.Lerp(transform.position, target.position, 0.05f);
     }
   }
 }
