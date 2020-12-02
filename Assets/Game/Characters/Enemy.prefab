@@ -30,6 +30,8 @@ MonoBehaviour:
   suspicionTime: 5
   waypointTolerance: 1
   dwellTime: 2
+  patrolSpeed: 2
+  chaseSpeed: 4
   patrolPath: {fileID: 0}
 --- !u!114 &2756822464729964389
 MonoBehaviour:
@@ -196,15 +198,19 @@ PrefabInstance:
       propertyPath: m_AutoTraverseOffMeshLink
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5463658592101254655, guid: 6f997e63f8ff13a42945abb63b81598e,
-        type: 3}
-      propertyPath: health
-      value: 15
+    - target: {fileID: 1539677833, guid: 6f997e63f8ff13a42945abb63b81598e, type: 3}
+      propertyPath: m_BaseOffset
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8019777536922732050, guid: 6f997e63f8ff13a42945abb63b81598e,
         type: 3}
       propertyPath: weaponRange
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5463658592101254655, guid: 6f997e63f8ff13a42945abb63b81598e,
+        type: 3}
+      propertyPath: health
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 585469114, guid: 6f997e63f8ff13a42945abb63b81598e, type: 3}
       propertyPath: m_Enabled
