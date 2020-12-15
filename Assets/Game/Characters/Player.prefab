@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1473053676500661242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7053209265125121910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc16d3794595c7b439b94d8096b59a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1398973300
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -39,6 +27,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &1473053676500661242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053209265125121910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc16d3794595c7b439b94d8096b59a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1032004923345264954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,7 +116,8 @@ PrefabInstance:
       propertyPath: weaponRange
       value: 1.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5463658592101254655, guid: 6f997e63f8ff13a42945abb63b81598e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6f997e63f8ff13a42945abb63b81598e, type: 3}
 --- !u!1 &7053209265125121910 stripped
 GameObject:
