@@ -16,6 +16,9 @@ public class Portal : MonoBehaviour
     [SerializeField] int portalSceneIndex;
     [SerializeField] Transform spawnPoint;
     [SerializeField] DestinationIdentifier destination;
+    [SerializeField] float fadeOutTime = 1f;
+    [SerializeField] float fadeInTime = 2f;
+    [SerializeField] float fadeWaitTime = 1f;
     private void OnTriggerEnter(Collider other) {
       if (other.gameObject.tag == "Player") {
         StartCoroutine(Transition());
@@ -28,12 +31,22 @@ public class Portal : MonoBehaviour
         Debug.LogError("Scene to load is not set");
         yield break;
       }
+
+
       
       DontDestroyOnLoad(gameObject);
+      
+      Fader fader = FindObjectOfType<Fader>();
+
+      yield return fader.FadeOut(fadeOutTime);
       yield return SceneManager.LoadSceneAsync(portalSceneIndex);
 
       Portal otherPortal = GetOtherPortal();
       UpdatePlayer(otherPortal);
+
+      Debug.Log("waiting");
+      yield return new WaitForSeconds(fadeWaitTime);
+      yield return fader.FadeIn(fadeInTime);
 
       Destroy(gameObject);
     }
@@ -43,7 +56,6 @@ public class Portal : MonoBehaviour
             GameObject player = GameObject.FindWithTag("Player");
 
             player.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);
-
             player.transform.position = otherPortal.spawnPoint.position;
             player.transform.rotation = otherPortal.spawnPoint.rotation;
         }

@@ -77,6 +77,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portalSceneIndex: 0
   spawnPoint: {fileID: 4093134020561076273}
+  destination: 0
+  fadeOutTime: 0.5
+  fadeInTime: 1.5
+  fadeWaitTime: 0.5
 --- !u!1 &817511304438508136
 GameObject:
   m_ObjectHideFlags: 0
