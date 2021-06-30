@@ -27,7 +27,7 @@ public class Portal : MonoBehaviour
 
     private IEnumerator Transition() {
 
-      if (portalSceneIndex <0 ) {
+      if (portalSceneIndex < 0) {
         Debug.LogError("Scene to load is not set");
         yield break;
       }
