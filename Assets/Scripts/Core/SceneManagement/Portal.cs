@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using RPG.Saving;
 
 namespace RPG.SceneManagement
 {
@@ -17,7 +18,7 @@ public class Portal : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     [SerializeField] DestinationIdentifier destination;
     [SerializeField] float fadeOutTime = 1f;
-    [SerializeField] float fadeInTime = 2f;
+    [SerializeField] float fadeInTime = 1.5f;
     [SerializeField] float fadeWaitTime = 1f;
     private void OnTriggerEnter(Collider other) {
       if (other.gameObject.tag == "Player") {
@@ -39,10 +40,16 @@ public class Portal : MonoBehaviour
       Fader fader = FindObjectOfType<Fader>();
 
       yield return fader.FadeOut(fadeOutTime);
+
+      SavingWrapper wrapper = FindObjectOfType<SavingWrapper>();
+      wrapper.Save();
       yield return SceneManager.LoadSceneAsync(portalSceneIndex);
+      wrapper.Load();
 
       Portal otherPortal = GetOtherPortal();
       UpdatePlayer(otherPortal);
+
+      wrapper.Save();
 
       Debug.Log("waiting");
       yield return new WaitForSeconds(fadeWaitTime);
